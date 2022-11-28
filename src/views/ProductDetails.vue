@@ -29,7 +29,11 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Keterangan" label-for="input-2">
+          <b-form-group
+            id="input-group-2"
+            label="Keterangan"
+            label-for="input-2"
+          >
             <b-form-input
               id="input-2"
               v-model="formProduct.notes"
@@ -72,25 +76,36 @@ export default {
         user_id: userID,
         menu_id: this.$route.params.id,
         qty: this.formProduct.qty,
-        notes: this.formProduct.notes == null ? '-' : this.formProduct.notes
-      }
+        notes: this.formProduct.notes == null ? "-" : this.formProduct.notes,
+      };
 
       this.$http
-      .post("http://127.0.0.1:8000/api/cart", data)
-      .then((response) => {
-        this.formProduct.qty = null
-        this.formProduct.notes = null
-      });
-      
+        .post("http://127.0.0.1:8000/api/cart", data)
+        .then((response) => {
+          this.$toast.success("Add to Cart Success!", {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false,
+          });
+        });
     },
   },
 
   mounted() {
-    const productID = this.$route.params.id
+    const productID = this.$route.params.id;
     this.$http
       .get("http://127.0.0.1:8000/api/menu/" + productID)
       .then((response) => {
-        this.product = response.data
+        this.product = response.data;
       });
   },
 };

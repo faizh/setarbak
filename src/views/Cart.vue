@@ -49,8 +49,8 @@
               </b-form-group>
 
               <b-button type="submit" variant="primary" class="float-right"
-                >Fix pesen</b-button
-              >
+                >Cus Pesen <b-icon-arrow-right></b-icon-arrow-right
+              ></b-button>
             </b-form>
           </div>
         </div>
@@ -97,7 +97,28 @@ export default {
         });
     },
 
-    onSubmit() {
+    onSubmit(event) {
+      event.preventDefault();
+
+      if (this.items.length == 0) {
+        this.$toast.error("Cart is Empty!", {
+          position: "top-right",
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false,
+        });
+
+        return false;
+      }
+
       this.isProcess = true;
 
       //   get total payment
@@ -130,16 +151,29 @@ export default {
             };
 
             this.$http
-            .post("http://127.0.0.1:8000/api/order_detail", orderDetail)
-            .then((response) => {
-				this.$http
-				.delete("http://127.0.0.1:8000/api/cart/" + item.cart_id)
-				.then((response) => {
-					
-				});
-            });
+              .post("http://127.0.0.1:8000/api/order_detail", orderDetail)
+              .then((response) => {
+                this.$http
+                  .delete("http://127.0.0.1:8000/api/cart/" + item.cart_id)
+                  .then((response) => {});
+              });
           });
         });
+
+      this.$toast.success("Order Placed!", {
+        position: "top-right",
+        timeout: 5000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: true,
+        closeButton: "button",
+        icon: true,
+        rtl: false,
+      });
     },
 
     async asyncData() {
