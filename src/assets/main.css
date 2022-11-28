@@ -77,3 +77,11 @@
     padding: 8px;
     border-radius: 5px;
 }
+
+.table th {
+    text-align: center;
+}
+
+.table .price {
+    text-align: right;
+}

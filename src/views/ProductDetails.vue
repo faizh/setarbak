@@ -6,15 +6,15 @@
       <div class="col-md-6">
         <img
           class="card-img-top card-img-bottom"
-          src="https://theculturetrip.com/wp-content/uploads/2018/03/coffee-983955_1280.jpg"
+          :src="product.img_src"
           alt="Card image cap"
         />
       </div>
       <div class="col-md-6">
-        <h3 class="mb-3">Caramel Praline Macchiato</h3>
-        <span class="bg-price">Rp 30.000</span>
+        <h3 class="mb-3">{{ product.name }}</h3>
+        <span class="bg-price">Rp {{ product.price }}</span>
         <p class="mt-3">
-          Latte dengan saus Praline dan karamel dengan rasa dan aroma manis
+          {{ product.description }}
         </p>
 
         <b-form @submit="onSubmit">
@@ -36,7 +36,6 @@
               type="text"
               placeholder="Less Ice? Less Sugar? Lessehan?"
               class="col-md-12"
-              required
             ></b-form-input>
           </b-form-group>
 
@@ -67,11 +66,32 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
+      const userID = 10;
+
+      const data = {
+        user_id: userID,
+        menu_id: this.$route.params.id,
+        qty: this.formProduct.qty,
+        notes: this.formProduct.notes == null ? '-' : this.formProduct.notes
+      }
+
+      this.$http
+      .post("http://127.0.0.1:8000/api/cart", data)
+      .then((response) => {
+        this.formProduct.qty = null
+        this.formProduct.notes = null
+      });
+      
     },
   },
 
   mounted() {
-    console.log(this.$route.params.id);
+    const productID = this.$route.params.id
+    this.$http
+      .get("http://127.0.0.1:8000/api/menu/" + productID)
+      .then((response) => {
+        this.product = response.data
+      });
   },
 };
 </script>

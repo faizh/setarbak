@@ -2,7 +2,7 @@
   <div class="card shadow" style="width: 18rem">
     <img
       class="card-img-top"
-      :src="product.img"
+      :src="product.img_src"
       alt="Card image cap" 
     />
     <div class="card-body">
