@@ -1,0 +1,79 @@
+#app {
+    color: red;
+}
+
+.color-primary {
+    color: #87B76A;
+}
+
+.color-primary-2 {
+    color: #171717
+}
+
+.color-secondary {
+    color: #2e2e2e
+}
+
+.background-primary {
+    background-color: #adbf91;
+}
+
+#app {
+    font-family: gilroyff, helvetica, arial, helvetica, arial;
+}
+
+.medium-bold {
+    font-weight: 500;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #87B76A;
+    border-color: #87B76A;
+}
+
+.btn-primary:hover  {
+    color: #87B76A;
+    background-color: #fff;
+    border-color: #87B76A;
+}
+
+.btn-primary:active  {
+    color: #87B76A;
+    background-color: #fff;
+    border-color: #87B76A;
+}
+
+.btn-primary:focus  {
+    color: #fff;
+    background-color: #87B76A;
+    border-color: #87B76A;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle{
+    color: #fff;
+    background-color: #87B76A;
+    border-color: #87B76A;
+}
+
+.nav-link {
+    color: #87B76A;
+}
+
+.nav-link:hover {
+    color: #87B76A;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb-item a {
+    color: #2e2e2e;
+}
+
+.bg-price {
+    background-color: #adbf91;
+    padding: 8px;
+    border-radius: 5px;
+}
