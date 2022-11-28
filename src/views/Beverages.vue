@@ -31,7 +31,7 @@ export default {
 
   mounted() {
     this.$http
-      .get("https://backendsetarbak.000webhostapp.com/api/menu/beverages")
+      .get("https://faizhermawan.com/backend-setarbak/public/api/menu/beverages")
       .then((response) => {
         this.products = response.data
       });

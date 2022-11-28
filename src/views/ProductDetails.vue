@@ -80,7 +80,7 @@ export default {
       };
 
       this.$http
-        .post("https://backendsetarbak.000webhostapp.com/api/cart", data)
+        .post("https://faizhermawan.com/backend-setarbak/public/api/cart", data)
         .then((response) => {
           this.$toast.success("Add to Cart Success!", {
             position: "top-right",
@@ -103,7 +103,7 @@ export default {
   mounted() {
     const productID = this.$route.params.id;
     this.$http
-      .get("https://backendsetarbak.000webhostapp.com/api/menu/" + productID)
+      .get("https://faizhermawan.com/backend-setarbak/public/api/menu/" + productID)
       .then((response) => {
         this.product = response.data;
       });
