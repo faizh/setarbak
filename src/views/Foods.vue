@@ -30,7 +30,7 @@ export default {
 
   mounted() {
     this.$http
-      .get("http://127.0.0.1:8000/api/menu/foods")
+      .get("https://backendsetarbak.000webhostapp.com/api/menu/foods")
       .then((response) => {
         this.products = response.data
       });

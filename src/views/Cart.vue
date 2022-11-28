@@ -91,7 +91,7 @@ export default {
   methods: {
     removeCart(cartID) {
       this.$http
-        .delete("http://127.0.0.1:8000/api/cart/" + cartID)
+        .delete("https://backendsetarbak.000webhostapp.com/api/cart/" + cartID)
         .then((response) => {
           this.asyncData();
         });
@@ -136,7 +136,7 @@ export default {
 
       // create order
       this.$http
-        .post("http://127.0.0.1:8000/api/order", order)
+        .post("https://backendsetarbak.000webhostapp.com/api/order", order)
         .then((response) => {
           this.orderID = response.data.order_id;
 
@@ -151,10 +151,10 @@ export default {
             };
 
             this.$http
-              .post("http://127.0.0.1:8000/api/order_detail", orderDetail)
+              .post("https://backendsetarbak.000webhostapp.com/api/order_detail", orderDetail)
               .then((response) => {
                 this.$http
-                  .delete("http://127.0.0.1:8000/api/cart/" + item.cart_id)
+                  .delete("https://backendsetarbak.000webhostapp.com/api/cart/" + item.cart_id)
                   .then((response) => {});
               });
           });
@@ -179,7 +179,7 @@ export default {
     async asyncData() {
       const userID = 10;
       await this.$http
-        .get("http://127.0.0.1:8000/api/cart/" + userID)
+        .get("https://backendsetarbak.000webhostapp.com/api/cart/" + userID)
         .then((response) => {
           this.items = response.data;
         });
