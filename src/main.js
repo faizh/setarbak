@@ -15,6 +15,7 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 import '../src/assets/main.css'
+import '../src/assets/app.js'
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)

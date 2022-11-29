@@ -1,10 +1,9 @@
 <template>
   <div>
-    <b-navbar toggleable="sm" type="light" class="navbar-fixed-top bg-white shadow-none p-3" fixed="top">
+    <b-navbar toggleable="sm" type="light" class="navbar-fixed-top bg-white navbar-default pt-2 pb-3" fixed="top">
       <div class="container">
-        <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
-        <router-link to="/"><b-navbar-brand><span class="color-primary medium-bold">Setarbak</span></b-navbar-brand></router-link>
+        <router-link to="/"><b-navbar-brand><span class="color-primary medium-bold navbar-title">Setarbak</span></b-navbar-brand></router-link>
 
         <b-collapse id="nav-text-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
