@@ -91,7 +91,7 @@ export default {
   methods: {
     removeCart(cartID) {
       this.$http
-        .delete("https://faizhermawan.com/backend-setarbak/public/api/cart/" + cartID)
+        .delete(import.meta.env.VITE_BASE_URL_API + "api/cart/" + cartID)
         .then((response) => {
           this.asyncData();
         });
@@ -136,7 +136,7 @@ export default {
 
       // create order
       this.$http
-        .post("https://faizhermawan.com/backend-setarbak/public/api/order", order)
+        .post(import.meta.env.VITE_BASE_URL_API + "api/order", order)
         .then((response) => {
           this.orderID = response.data.order_id;
 
@@ -151,10 +151,10 @@ export default {
             };
 
             this.$http
-              .post("https://faizhermawan.com/backend-setarbak/public/api/order_detail", orderDetail)
+              .post(import.meta.env.VITE_BASE_URL_API + "api/order_detail", orderDetail)
               .then((response) => {
                 this.$http
-                  .delete("https://faizhermawan.com/backend-setarbak/public/api/cart/" + item.cart_id)
+                  .delete(import.meta.env.VITE_BASE_URL_API + "api/cart/" + item.cart_id)
                   .then((response) => {});
               });
           });
@@ -179,7 +179,7 @@ export default {
     async asyncData() {
       const userID = 10;
       await this.$http
-        .get("https://faizhermawan.com/backend-setarbak/public/api/cart/" + userID)
+        .get(import.meta.env.VITE_BASE_URL_API + "api/cart/" + userID)
         .then((response) => {
           this.items = response.data;
         });

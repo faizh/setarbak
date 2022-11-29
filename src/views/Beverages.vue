@@ -11,6 +11,19 @@
         <CardProduct :product="product" />
       </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          align="center"
+        ></b-pagination>
+        </div>
+        
+      
+    </div>
   </div>
 </template>
 
@@ -20,21 +33,40 @@ import Navigations from "../components/Navigations.vue";
 </script>
 
 <script>
-
 export default {
   data() {
     return {
       currMenu: "Beverages",
       products: [],
+      rows: 0,
+      currentPage: 1,
+      perPage: 0,
     };
   },
 
+  methods: {
+    dataPagination() {
+      this.$http
+        .get(import.meta.env.VITE_BASE_URL_API + "api/menu/beverages/paginated?page=" + this.currentPage)
+        .then((response) => {
+          this.rows = response.data.total
+          this.perPage = response.data.per_page
+          this.products = response.data.data
+        });
+    },
+  },
+
   mounted() {
-    this.$http
-      .get("https://faizhermawan.com/backend-setarbak/public/api/menu/beverages")
-      .then((response) => {
-        this.products = response.data
-      });
+    this.dataPagination();
+  },
+
+  watch: {
+    currentPage: {
+      handler: function (value) {
+        this.currentPage = value
+        this.dataPagination()
+      },
+    },
   },
 };
 </script>
