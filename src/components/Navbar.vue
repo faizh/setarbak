@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="sm" type="light" class="sticky-top pt-3 pb-3">
+    <b-navbar toggleable="sm" type="light" class="navbar-fixed-top bg-white shadow-none p-3" fixed="top">
       <div class="container">
         <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -18,3 +18,11 @@
     </b-navbar>
   </div>
 </template>
+
+E:/projects/vue/vue-2/setarbak/node_modules/bootstrap/dist/css/bootstrap.css
+
+<style scoped>
+.router-link-exact-active .nav-link {
+    color: #87B76A;
+}
+</style>

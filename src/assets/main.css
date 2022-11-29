@@ -2,6 +2,9 @@
     color: red;
 }
 
+body { padding-top: 80px; }
+
+
 .color-primary {
     color: #87B76A;
 }
@@ -55,14 +58,14 @@
     background-color: #87B76A;
     border-color: #87B76A;
 }
-
+/* 
 .nav-link {
     color: #87B76A;
 }
 
 .nav-link:hover {
     color: #87B76A;
-}
+} */
 
 .breadcrumb {
     background-color: transparent;
@@ -84,4 +87,8 @@
 
 .table .price {
     text-align: right;
+}
+
+.router-link-exact-active .nav-link {
+    color: red;
 }
