@@ -1,7 +1,7 @@
 <template>
   <div class="container mb-5">
     <Navigations :menu="currMenu" v-if="!isProcess" />
-    <div class="row" v-if="!isProcess">
+    <div class="row" v-if="!isProcess && items.length > 0">
       <div class="col">
         <div class="row">
           <table class="table">
@@ -57,13 +57,18 @@
       </div>
     </div>
 
-    <div class="processing" v-if="isProcess">
+    <div class="processing">
       <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center"  v-if="isProcess">
           <img src="/src/assets/images/cooking.svg" width="100%" class="p-5" />
           <br />
           <h5>Bentar ya, pesanannya lagi dibuat nih.</h5>
+        </div>
+        <div class="col-md-4 text-center"  v-if="items.length == 0">
+          <img src="/src/assets/images/empty_cart.svg" width="100%" class="p-5" />
+          <br />
+          <h5>Yah, keranjangmu kosong nih.</h5>
         </div>
       </div>
     </div>
