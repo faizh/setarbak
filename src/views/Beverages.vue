@@ -3,6 +3,15 @@
     <Navigations :menu="currMenu" />
 
     <div class="row">
+      <div class="col-md-12">
+        <div class="search-box float-right mb-3">
+          <button class="btn-search"><b-icon icon="search"></b-icon></button>
+          <input type="text" v-model="searchInput" class="input-search" placeholder="Type to Search..." @keyup="getMenu()">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div
         class="col-md-4 mt-4 d-flex justify-content-center"
         v-for="product in products"
@@ -41,6 +50,7 @@ export default {
       rows: 0,
       currentPage: 1,
       perPage: 0,
+      searchInput: ''
     };
   },
 
@@ -54,6 +64,16 @@ export default {
           this.products = response.data.data
         });
     },
+
+    getMenu() {
+      this.$http
+        .get(import.meta.env.VITE_BASE_URL_API + "api/menu/beverages/search/" + this.searchInput + "?page=" + this.currentPage)
+        .then((response) => {
+          this.rows = response.data.total
+          this.perPage = response.data.per_page
+          this.products = response.data.data
+        });
+    }
   },
 
   mounted() {
@@ -64,7 +84,11 @@ export default {
     currentPage: {
       handler: function (value) {
         this.currentPage = value
-        this.dataPagination()
+        if (this.searchInput != '') {
+          this.getMenu()
+        }else{
+          this.dataPagination()
+        }
       },
     },
   },
