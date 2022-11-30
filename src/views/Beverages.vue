@@ -3,7 +3,14 @@
     <Navigations :menu="currMenu" />
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 d-flex align-items-center justify-content-center">
+        <div class="search-box float-left mb-3 mr-2">
+          <b-button class="ml-1" :variant="menuVariant.all" @click="menuAll('all')">All</b-button>
+          <b-button class="ml-1" :variant="menuVariant.espresso" @click="menuAll('espresso')">Espresso Beverages</b-button>
+          <b-button class="ml-1" :variant="menuVariant.brewed" @click="menuAll('brewed')">Brewed Coffee</b-button>
+          <b-button class="ml-1" :variant="menuVariant.blended" @click="menuAll('blended')">Blended Beverages</b-button>
+        </div>
+
         <div class="search-box float-right mb-3">
           <button class="btn-search"><b-icon icon="search"></b-icon></button>
           <input type="text" v-model="searchInput" class="input-search" placeholder="Type to Search..." @keyup="searchMenu()">
@@ -50,7 +57,19 @@ export default {
       rows: 0,
       currentPage: 1,
       perPage: 0,
-      searchInput: ''
+      searchInput: '',
+      menuVariant: {
+        all: 'primary',
+        espresso: 'outline-primary',
+        brewed: 'outline-primary',
+        blended: 'outline-primary'
+      },
+      filterMenu:{
+        all: true,
+        espresso: false,
+        brewed: false,
+        blended: false
+      }
     };
   },
 
@@ -78,6 +97,55 @@ export default {
           this.perPage = response.data.per_page
           this.products = response.data.data
         });
+    },
+
+    menuAll(menu){
+      if (menu == 'all') {
+        this.filterMenu.all = ! this.filterMenu.all
+        this.filterMenu.blended = false
+        this.filterMenu.espresso = false
+        this.filterMenu.brewed = false
+      }else if (menu == 'espresso') {
+        this.filterMenu.espresso = ! this.filterMenu.espresso
+      }else if(menu == 'brewed') {
+        this.filterMenu.brewed = ! this.filterMenu.brewed
+      }else if (menu == 'blended') {
+        this.filterMenu.blended = ! this.filterMenu.blended
+      }
+
+      if (this.filterMenu.espresso || this.filterMenu.brewed || this.filterMenu.blended) {
+        this.filterMenu.all = false
+      }else{
+        this.filterMenu.all = true
+      }
+
+      this.setVariant()
+    },
+
+    setVariant() {
+      if (this.filterMenu.all) {
+        this.menuVariant.all = 'primary'
+      }else{
+        this.menuVariant.all = 'outline-primary'
+      }
+
+      if (this.filterMenu.espresso) {
+        this.menuVariant.espresso = 'primary'
+      }else{
+        this.menuVariant.espresso = 'outline-primary'
+      }
+
+      if (this.filterMenu.brewed) {
+        this.menuVariant.brewed = 'primary'
+      }else{
+        this.menuVariant.brewed = 'outline-primary'
+      }
+
+      if (this.filterMenu.blended) {
+        this.menuVariant.blended = 'primary'
+      }else{
+        this.menuVariant.blended = 'outline-primary'
+      }
     }
   },
 
@@ -96,6 +164,18 @@ export default {
         }
       },
     },
+
+    filterMenu: {
+      handler: function (value){
+        console.log(value)
+      }
+    }
   },
 };
 </script>
+
+<style>
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+  background-color: red;
+}
+</style>
