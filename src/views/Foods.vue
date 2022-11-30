@@ -3,6 +3,22 @@
     <Navigations :menu="currMenu" />
 
     <div class="row">
+      <div class="col-md-12">
+        <div class="search-box float-right mb-3">
+          <button class="btn-search"><b-icon icon="search"></b-icon></button>
+          <input
+            type="text"
+            v-model="searchInput"
+            class="input-search"
+            placeholder="Type to Search..."
+            @keyup="searchMenu()"
+            @blur="searchMenu()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div
         class="col-md-4 mt-3 d-flex justify-content-center"
         v-for="product in products"
@@ -34,11 +50,12 @@ import Navigations from "../components/Navigations.vue";
 export default {
   data() {
     return {
-      currMenu: "Beverages",
+      currMenu: "Foods",
       products: [],
       rows: 0,
       currentPage: 1,
       perPage: 0,
+      searchInput: ''
     };
   },
 
@@ -56,6 +73,27 @@ export default {
           this.products = response.data.data;
         });
     },
+
+    searchMenu() {
+      if (this.searchInput == '') {
+        this.dataPagination()
+        return false
+      }
+      
+      this.$http
+        .get(
+          import.meta.env.VITE_BASE_URL_API +
+            "api/menu/foods/search/" +
+            this.searchInput +
+            "?page=" +
+            this.currentPage
+        )
+        .then((response) => {
+          this.rows = response.data.total;
+          this.perPage = response.data.per_page;
+          this.products = response.data.data;
+        });
+    },
   },
 
   mounted() {
@@ -65,8 +103,12 @@ export default {
   watch: {
     currentPage: {
       handler: function (value) {
-        this.currentPage = value;
-        this.dataPagination();
+        this.currentPage = value
+        if (this.searchInput != '') {
+          this.searchMenu()
+        }else{
+          this.dataPagination()
+        }
       },
     },
   },

@@ -6,7 +6,7 @@
       <div class="col-md-12">
         <div class="search-box float-right mb-3">
           <button class="btn-search"><b-icon icon="search"></b-icon></button>
-          <input type="text" v-model="searchInput" class="input-search" placeholder="Type to Search..." @keyup="getMenu()">
+          <input type="text" v-model="searchInput" class="input-search" placeholder="Type to Search..." @keyup="searchMenu()">
         </div>
       </div>
     </div>
@@ -65,7 +65,12 @@ export default {
         });
     },
 
-    getMenu() {
+    searchMenu() {
+      if (this.searchInput == '') {
+        this.dataPagination()
+        return false
+      }
+      
       this.$http
         .get(import.meta.env.VITE_BASE_URL_API + "api/menu/beverages/search/" + this.searchInput + "?page=" + this.currentPage)
         .then((response) => {
@@ -85,7 +90,7 @@ export default {
       handler: function (value) {
         this.currentPage = value
         if (this.searchInput != '') {
-          this.getMenu()
+          this.searchMenu()
         }else{
           this.dataPagination()
         }
