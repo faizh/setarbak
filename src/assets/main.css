@@ -98,11 +98,115 @@ body {
     color: red;
 }
 
-/* navbar */
+/* start navbar */
 .navbar-default {
     transition: 200ms ease;
 }
 
 .navbar-default.scrolled {
     box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+}
+
+/* end navbar */
+
+
+/* start filter search */
+.search-box {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
+.input-search {
+    height: 40px;
+    width: 40px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #adbf91;
+    padding-right: 0px;
+    color: #adbf91;
+}
+
+.input-search::placeholder {
+    color: #adbf91;
+    font-size: 15px;
+    /* letter-spacing: 2px; */
+    font-weight: 100;
+    font-family: gilroyff, helvetica, arial, helvetica, arial;
+}
+
+.btn-search {
+    width: 40px;
+    height: 40px;
+    border-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: #ffffff;
+    background-color: transparent;
+    pointer-events: painted;
+}
+
+.btn-search:focus {
+    color: #adbf91;
+}
+
+
+.btn-search:focus~.input-search {
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid #adbf91;
+    ;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.input-search:focus {
+    font-family: gilroyff, helvetica, arial, helvetica, arial;
+    font-size: 15px;
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid #adbf91;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+/* end filter search  */
+
+
+/* button filter */
+.btn-outline-primary {
+    border-color: #adbf91;
+    color:#adbf91;
+}
+
+.btn-outline-primary:hover {
+    border-color: #adbf91;
+    background-color: #adbf91;
+}
+
+.btn-outline-primary:active {
+    border-color: #adbf91;
+    background-color: #adbf91;
+}
+
+.btn.ml-1.btn-primary {
+    background-color: #adbf91;
+    border-color: #adbf91;
+    color: #fff;
+}
+
+.btn.ml-1.btn-outline-primary {
+    background-color: #fff;
+    border-color: #adbf91;
+    color: #adbf91;
 }
