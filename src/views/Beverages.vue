@@ -38,7 +38,7 @@
             v-model="searchInput"
             class="input-search"
             placeholder="Type to Search..."
-            @keyup="searchMenu()"
+            @keyup="filterData()"
           />
         </div>
       </div>
@@ -112,30 +112,6 @@ export default {
           this.perPage = response.data.per_page;
           this.products = response.data.data;
         });
-    },
-
-    searchMenu() {
-      // var search_keyword;
-      // if (this.searchInput == "") {
-      //   search_keyword = "get_all";
-      // } else {
-      //   search_keyword = this.searchInput;
-      // }
-
-      // this.$http
-      //   .get(
-      //     import.meta.env.VITE_BASE_URL_API +
-      //       "api/menu/beverages/search/" +
-      //       search_keyword +
-      //       "?page=" +
-      //       this.currentPage
-      //   )
-      //   .then((response) => {
-      //     this.rows = response.data.total;
-      //     this.perPage = response.data.per_page;
-      //     this.products = response.data.data;
-      //   });
-      this.filterData()
     },
 
     menuAll(menu) {
