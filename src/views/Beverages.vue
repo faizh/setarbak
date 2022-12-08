@@ -3,34 +3,36 @@
     <Navigations :menu="currMenu" />
 
     <div class="row">
-      <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <div class="col-md-8 col-sm-12 d-flex align-items-center justify-content-center">
         <div class="search-box float-left mb-3 mr-2">
           <b-button
-            class="ml-1"
+            class="ml-1 mb-1 btn-filter-sub-category"
             :variant="menuVariant.all"
             @click="menuAll('all')"
             >All</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mb-1 btn-filter-sub-category"
             :variant="menuVariant.espresso"
             @click="menuAll('espresso')"
             >Espresso Beverages</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mb-1 btn-filter-sub-category"
             :variant="menuVariant.brewed"
             @click="menuAll('brewed')"
             >Brewed Coffee</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mb-1 btn-filter-sub-category"
             :variant="menuVariant.blended"
             @click="menuAll('blended')"
             >Blended Beverages</b-button
           >
         </div>
+      </div>
 
+      <div class="col-md-4 col-sm-12 d-flex ">
         <div class="search-box float-right mb-3">
           <button class="btn-search"><b-icon icon="search"></b-icon></button>
           <input
@@ -42,11 +44,13 @@
           />
         </div>
       </div>
+
+      
     </div>
 
     <div class="row">
       <div
-        class="col-md-4 mt-4 d-flex justify-content-center"
+        class="col-md-4 mt-4 col-6 d-flex justify-content-center"
         v-for="product in products"
         :key="product.id"
       >
@@ -210,11 +214,15 @@ export default {
       }
 
       if (this.filterSubCategory == "") {
-        sub_category = "&sub_category[]=get_all"
+        sub_category = "&sub_category[]=all"
       } else {
         sub_category = this.filterSubCategory
       }
       sub_category = sub_category.replace(/,/g, '')
+
+      const headers = {
+        'Access-Control-Allow-Origin': '*'
+    }
 
       this.$http
         .get(
@@ -225,7 +233,9 @@ export default {
             "&search_keywords=" + 
             search_keyword +
             "&page=" +
-            this.currentPage
+            this.currentPage, {
+              headers: headers
+            }
         )
         .then((response) => {
           this.rows = response.data.total;

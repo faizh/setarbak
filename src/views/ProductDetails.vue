@@ -11,9 +11,9 @@
         />
       </div>
       <div class="col-md-6">
-        <h3 class="mb-3">{{ product.name }}</h3>
+        <h3 class="mb-3 product-name">{{ product.name }}</h3>
         <span class="bg-price">Rp {{ product.price }}</span>
-        <p class="mt-3">
+        <p class="mt-3 product-description">
           {{ product.description }}
         </p>
 

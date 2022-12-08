@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow" style="width: 18rem">
+  <div class="card shadow card-product">
     <img
       class="card-img-top"
       :src="product.img_src"
@@ -10,7 +10,7 @@
       <p class="card-text text-grey">
         Rp {{ product.price }}<br />
       </p>
-      <router-link :to="'/productDetails/' + product.id " class="btn btn-primary">See detail <b-icon icon="arrow-right"></b-icon></router-link>
+      <router-link :to="'/productDetails/' + product.id " class="btn btn-primary btn-primary-card-product">See detail <b-icon icon="arrow-right"></b-icon></router-link>
     </div>
   </div>
 </template>
