@@ -3,34 +3,36 @@
     <Navigations :menu="currMenu" />
 
     <div class="row">
-      <div class="col-md-12 d-flex align-items-center justify-content-center">
+      <div class="col-md-8 col-sm-12 d-flex align-items-center justify-content-center">
         <div class="search-box float-left mb-3 mr-2">
           <b-button
-            class="ml-1"
+            class="ml-1 mt-1"
             :variant="menuVariant.all"
             @click="menuAll('all')"
             >All</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mt-1"
             :variant="menuVariant.bakery"
             @click="menuAll('bakery')"
             >Bakery</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mt-1"
             :variant="menuVariant.sandwiches"
             @click="menuAll('sandwiches')"
             >Sandwiches</b-button
           >
           <b-button
-            class="ml-1"
+            class="ml-1 mt-1"
             :variant="menuVariant.cakes"
             @click="menuAll('cakes')"
             >Cakes & Sweets</b-button
           >
         </div>
+      </div>
 
+      <div class="col-md-4 col-sm-12 d-flex ">
         <div class="search-box float-right mb-3">
           <button class="btn-search"><b-icon icon="search"></b-icon></button>
           <input
@@ -42,11 +44,13 @@
           />
         </div>
       </div>
+
+      
     </div>
 
     <div class="row">
       <div
-        class="col-md-4 mt-4 d-flex justify-content-center"
+        class="col-md-4 mt-4 col-6 d-flex justify-content-center"
         v-for="product in products"
         :key="product.id"
       >
