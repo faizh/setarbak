@@ -137,6 +137,7 @@ export default {
         user_id: userID,
         payment_total: total_payment,
         order_status: 1,
+        table_no : this.formMeja
       };
 
       // create order
